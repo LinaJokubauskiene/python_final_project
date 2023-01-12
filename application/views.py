@@ -31,7 +31,7 @@ def add_category(request):
 
 
 def show_categories(request):
-    categories = Category.objects.filter(name='Category name').all()
+    categories = Category.objects.values()
     return render(request, 'show_categories.html', context={'categories': categories})
 
 
