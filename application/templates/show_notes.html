@@ -2,6 +2,12 @@
 
 {% block content %}
 <h1>Notes</h1>
+
+<li>
+    <form action="{% url 'search' %}" method="get" class="form-inline my-2 my-md-0">
+    <input name="query" class="form-control" type="text" placeholder="Search">
+    </form>
+    </li>
 <table class="table">
     <thead>
     <tr>
@@ -19,8 +25,9 @@
         <td>{{ note.name }}</td>
         <td>{{ note.description }}</td>
         <td>{{ note.category }}</td>
-        <td>{% if note.image %}<img src="{{ note.image.url }}" height="30" width="40">{% endif %}</td>
+        <td>{% if note.image %}<img src="{{ note.image.url }}" height="40" width="40">{% endif %}</td>
     </tr>
+
     {% endfor %}
     </tbody>
 </table>

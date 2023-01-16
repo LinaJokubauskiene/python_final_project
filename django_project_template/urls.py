@@ -22,10 +22,11 @@ from django.conf import settings
 
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('authentication.urls')),
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('application.urls')),
-] + static(settings.MEDIA_URL, document_root_=settings.MEDIA_ROOT)
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
