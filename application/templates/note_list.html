@@ -16,18 +16,18 @@
         <th scope="col">Description</th>
         <th scope="col">Category</th>
         <th scope="col">Image</th>
+        <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
-    {% for note in notes %}
+    {% for note in note_list %}
     <tr>
         <th scope="row">{{ note.id }}</th>
         <td>{{ note.name }}</td>
         <td>{{ note.description }}</td>
         <td>{{ note.category }}</td>
         <td>{% if note.image %}<img src="{{ note.image.url }}" height="40" width="40">{% endif %}</td>
-        <td><a class="nav-link" href="{% url 'update_note' note.id %}">Edit Note</a></td>
-        <td><a class="nav-link" href="{% url 'delete_note' note.id %}">Delete Note</a></td>
+         <td><a href="{% url 'update note' pk=note.id %}">Edit Note</a></a></td>
     </tr>
 
     {% endfor %}

@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -14,14 +13,10 @@ class Category(models.Model):
 class Note(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
     description = models.CharField(max_length=200)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='note', null=True, blank=True)
     search_fields = ('note_name')
     list_filter = ('category')
-
-    # fieldsets = (
-    #     ('Notes by categories', {'fields': ('category')}),
-    # )
 
 class Meta:
     ordering = ('name',)

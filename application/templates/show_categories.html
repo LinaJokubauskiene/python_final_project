@@ -14,6 +14,9 @@
     <tr>
         <th scope="row">{{ category.id }}</th>
         <td>{{ category.name }}</td>
+        <td><a class="nav-link" href="{% url 'update_category' category.id %}">Edit Category</a></td>
+        <td><a class="nav-link" href="{% url 'delete_category' category.id %}">Delete Category</a></td>
+
     </tr>
     {% endfor %}
     </tbody>

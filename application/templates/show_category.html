@@ -15,7 +15,7 @@
     <tr>
         <th scope="row">{{ category.id }}</th>
         <td>{{ category.name }}</td>
-        <td><a href="{% url 'update_category' category.id %}">Edit</a><a href="{% url 'delete_category' category.id %}">Delete</a></td>
+        <td><a href="{% url 'update_category' category.id %}">Edit</a><a href="{% url 'confirm_delete_category' category.id %}">Delete</a></td>
     </tr>
     {% endfor %}
     </tbody>
