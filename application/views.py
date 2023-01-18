@@ -66,6 +66,10 @@ def search(request):
     search_results = Note.objects.filter(Q(name=query))
     return render(request, 'search.html', {'notes': search_results, 'query': query})
 
+def filter_notes_by_category(request, category_id):
+    note_list = Note.objects.filter(category=category_id)
+    return render(request, 'show_notes.html', {'notes': note_list})
+
 def show_note(request, note_id):
     note = Note.objects.get(id=note_id)
     return render(request, 'show_note.html', context={'note': note})
@@ -84,9 +88,9 @@ def update_category(request, category_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Record updated!')
-            return redirect('index')
+            return redirect('update_category')
         messages.warning(request, 'Form not valid!')
-        return render(request, 'show_categories.html', context={'form': form})
+        return render(request, 'update_category.html', context={'form': form})
     else:
         form = NoteUpdateForm()
     return render(request, 'show_categories.html', context={'form': form})
@@ -109,12 +113,12 @@ def update_note(request, note_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Record updated!')
-            return redirect('show_notes')
+            return redirect('update_note')
         messages.warning(request, 'Form not valid!')
-        return render(request, 'show_notes.html', context={'form': form})
+        return render(request, 'update_note.html', context={'form': form})
     else:
         form = NoteUpdateForm()
-    return render(request, 'update_notes.html', context={'form': form})
+    return render(request, 'show_notes.html', context={'form': form})
 
 
 @login_required(login_url='login')

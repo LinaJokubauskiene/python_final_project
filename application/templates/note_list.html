@@ -1,36 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Notes</h1>
+    <h1>Notes</h1>
+    <ul>;
+        {% for note in notes %}
+        div class="item d-flex justify-content-between">
+<a href="{% url 'note_list' category.id %}">{{ category.name }}</a>
 
-<li>
-    <form action="{% url 'search' %}" method="get" class="form-inline my-2 my-md-0">
-    <input name="query" class="form-control" type="text" placeholder="Search">
-    </form>
-    </li>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Category</th>
-        <th scope="col">Image</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for note in note_list %}
-    <tr>
-        <th scope="row">{{ note.id }}</th>
-        <td>{{ note.name }}</td>
-        <td>{{ note.description }}</td>
-        <td>{{ note.category }}</td>
-        <td>{% if note.image %}<img src="{{ note.image.url }}" height="40" width="40">{% endif %}</td>
-         <td><a href="{% url 'update note' pk=note.id %}">Edit Note</a></a></td>
-    </tr>
+</div>
+        {% endfor %}
+    </ul>
 
-    {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+        {% endfor %}
+    </ul>
+{% endblock content %}

@@ -13,11 +13,31 @@
   </br>
   {% if notes %}
   <ul>
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col">Image</th>
+    </tr>
+    </thead>
+    <tbody>
     {% for note in notes %}
-      <li>
-        <a href="{% url 'show_note' note.id %}">{{ note.name }}</a>
-      </li>
+    <tr>
+        <th scope="row">{{ note.id }}</th>
+        <td>{{ note.name }}</td>
+        <td>{{ note.description }}</td>
+        <td>{{ note.category }}</td>
+        <td>{% if note.image %}<img src="{{ note.image.url }}" height="40" width="40">{% endif %}</td>
+        <td><a class="nav-link" href="{% url 'update_note' note.id %}">Edit Note</a></td>
+        <td><a class="nav-link" href="{% url 'delete_note' note.id %}">Delete Note</a></td>
+    </tr>
+
     {% endfor %}
+    </tbody>
+</table>
   </ul>
   {% else %}
     <p>Oops. Nieko neradome :(</p>
@@ -27,3 +47,4 @@
 
 </body>
 </html>
+
